@@ -21,9 +21,10 @@ useEffect(() => {
 
   // ✅ helper to get correct icon and label
   function getWeatherInfo(code) {
-    if (!code || !weather_codes[code]) return null;
-    return weather_codes[code];
-  }
+  if (code === undefined || code === null || !weather_codes[code]) return null;
+  return weather_codes[code];
+}
+
 
   const info = todayWeather ? getWeatherInfo(todayWeather.weathercode) : null;
 

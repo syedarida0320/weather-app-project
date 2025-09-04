@@ -75,3 +75,8 @@ export const weather_codes = {
     icons: { day: thunderstorm, night: thunderstorm },
   },
 };
+export function getWeatherIcon(code, isDay = true) {
+  const entry = weather_codes[code];
+  if (!entry) return clearDay; // fallback to clearDay
+  return isDay ? entry.icons.day : entry.icons.night;
+}
