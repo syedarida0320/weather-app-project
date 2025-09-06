@@ -33,6 +33,9 @@ export default function SidebarCities() {
       </div>
 
       <Sidebar className="fixed top-0 left-0 h-full z-40 w-70 bg-black md:bg-white/20 text-white transition-transform duration-300 md:static">
+        <div className="absolute top-4 right-4 z-50 md:hidden">
+          <SidebarTrigger className="bg-white/10 hover:bg-white/20 text-white rounded-md p-2" />
+        </div>
         <SidebarContent className="p-4 overflow-y-auto">
           <SidebarGroup>
             <SidebarGroupLabel className="text-white text-xl font-bold mb-5 md:p-0 pt-[20px]">
