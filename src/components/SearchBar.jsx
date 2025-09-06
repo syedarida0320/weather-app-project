@@ -23,7 +23,6 @@ import {
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useEffect, useRef } from "react";
 
-// ✅ Import Shadcn Command
 import {
   Command,
   CommandList,
@@ -41,7 +40,7 @@ export default function SearchBar() {
 
   const [user] = useAuthState(auth);
   const skipFetchRef = useRef(false);
-  const isTypingRef = useRef(false); // ✅ new ref
+  const isTypingRef = useRef(false); 
   const searchInputRef = useRef(null);
 
   useEffect(() => {
@@ -62,7 +61,7 @@ useEffect(() => {
     return;
   }
 
-  // ✅ prevent showing suggestions if update not from typing
+
   if (!isTypingRef.current) {
     dispatch(setSuggestions([]));
     dispatch(setShowSuggestions(false));
@@ -98,7 +97,6 @@ useEffect(() => {
 }, [city, dispatch]);
 
 
-  // ✅ Add city to Firestore
   async function handleAddCity() {
     if (!city || !user) return;
 
@@ -137,10 +135,9 @@ useEffect(() => {
     }
   }
 
-  // ✅ Select city from suggestions
   function handleSelectSuggestion(suggestion) {
   skipFetchRef.current = true;
-  isTypingRef.current = false;  // ✅ not typing anymore
+  isTypingRef.current = false; 
   dispatch(setCity(suggestion.name));
   dispatch(setSuggestions([]));
   dispatch(setHighlightedIndex(-1));
@@ -148,8 +145,6 @@ useEffect(() => {
   dispatch(fetchCityWeatherByName(suggestion.name));
 }
 
-
-  // ✅ Keyboard navigation
   function handleKeyDown(e) {
     if (suggestions.length === 0 && e.key === "Enter" && city.trim()) {
       e.preventDefault();
@@ -185,7 +180,7 @@ useEffect(() => {
   placeholder="Search city..."
   value={city}
   onChange={(e) => {
-    isTypingRef.current = true;   // ✅ mark as typing
+    isTypingRef.current = true; 
     dispatch(setCity(e.target.value));
     dispatch(setTemperature(null));
   }}
@@ -204,7 +199,6 @@ useEffect(() => {
         <Plus className="w-4 h-4" />
       </Button>
 
-      {/* ✅ Suggestions using Command (no dropdown trigger needed) */}
 {showSuggestions && suggestions.length > 0 && (
   <div className="absolute w-full bg-white text-black rounded-md shadow-md mt-1 z-10 max-h-48 overflow-y-auto">
     <Command>
@@ -227,7 +221,6 @@ useEffect(() => {
 )}
 
 
-      {/* Loader */}
       {loading && (
         <div className="flex justify-center mt-4">
           <div className="w-8 h-8 border-4 border-t-transparent border-white rounded-full animate-spin border-solid"></div>
