@@ -32,11 +32,7 @@ export default function Forecast() {
   const dispatch = useDispatch();
   const [user, authLoading] = useAuthState(auth);
 
-  //Fetch cities from Firestore
   useEffect(() => {
-    //Don’t run Firestore queries unless:
-    //user exists (someone is logged in).
-    //authLoading is false
     if (!user || authLoading) return;
 
     const q = query(
@@ -59,15 +55,12 @@ export default function Forecast() {
     return () => unsubscribe();
   }, [user, authLoading, dispatch]);
 
-
-  //it fetches weather for the default city
   useEffect(() => {
     if (!user || cities.length === 0) return;
     const defaultCity = cities.find((c) => c.isDefault);
     if (defaultCity) dispatch(fetchCityWeatherByName(defaultCity.name));
   }, [user, cities, dispatch]);
 
-  //Once weather is loaded, it hides the search suggestions
   useEffect(() => {
     if (temperature !== null) dispatch(hideSuggestions());
   }, [temperature, dispatch]);
