@@ -14,7 +14,7 @@ import {
   fetchCityWeatherByName,
   setDefaultCity,
   removeCity,
-  hideSuggestions, // 👈 new action
+  hideSuggestions,
 } from "@/store/forecastSlice";
 
 export default function SidebarCities() {
@@ -23,7 +23,7 @@ export default function SidebarCities() {
 
   const handleCityClick = (cityName) => {
     dispatch(fetchCityWeatherByName(cityName));
-    dispatch(hideSuggestions()); // 👈 close suggestions immediately
+    dispatch(hideSuggestions()); 
   };
 
   return (
@@ -54,7 +54,7 @@ export default function SidebarCities() {
                           ? "text-white"
                           : "bg-gray-700 hover:bg-gray-500"
                       }`}
-                      onClick={() => handleCityClick(c.name)} // 👈 use handler
+                      onClick={() => handleCityClick(c.name)}
                     >
                       <span>{c.name}</span>
                       <div className="flex items-center gap-2">
