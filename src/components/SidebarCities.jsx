@@ -49,7 +49,7 @@ export default function SidebarCities() {
                 {cities.map((c) => (
                   <SidebarMenuItem key={c.id}>
                     <SidebarMenuButton
-                      className={`flex justify-between bg-gray-700 hover:bg-gray-500 hover:text-white items-center rounded px-2 py-1 ${
+                      className={`flex justify-between bg-gray-700 hover:bg-gray-500 hover:text-white items-center rounded px-2 py-1 border-1 border-r-background border-gray-500  ${
                         c.isDefault
                           ? "text-white"
                           : "bg-gray-700 hover:bg-gray-500"
