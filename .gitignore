@@ -27,7 +27,7 @@ dist-ssr
 
 
 # Ignore Firebase service account key
-/config/firebaseServiceKey.json
+backend/config/firebaseServiceKey.json
 
 .env
 
