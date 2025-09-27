@@ -28,4 +28,4 @@ dist-ssr
 
 
 # Ignore Firebase service account key
-api/backend/config/firebaseServiceKey.json
+backend/config/firebaseServiceKey.json
