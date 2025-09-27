@@ -33,10 +33,8 @@ export const addCity = createAsyncThunk(
       const res = await axios.post("/cities", { name });
 
       if (!res.data.success) return rejectWithValue(res.data.message);
-      const newCity = res.data.data;
-
       await dispatch(fetchCities());
-      return newCity;
+      return res.data.data;
     } catch (err) {
       return rejectWithValue(
         err.response?.data?.message || "Failed to add city"
@@ -274,10 +272,6 @@ const forecastSlice = createSlice({
           );
           state.cities = uniqueCities;
         }
-      })
-
-      .addCase(addCity.fulfilled, (state, action) => {
-        if (action.payload) state.cities.unshift(action.payload);
       })
       .addCase(removeCity.fulfilled, (state, action) => {
         state.cities = state.cities.filter(
